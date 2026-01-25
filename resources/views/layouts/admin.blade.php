@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Gym Manager') - Application de Gestion</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.tailwindcss.com"></script>
@@ -45,6 +46,12 @@
                        class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 {{ request()->routeIs('coaches.*') ? 'bg-white text-indigo-600 shadow-lg' : 'hover:bg-indigo-700' }}">
                         <i class="fas fa-user-tie w-5"></i>
                         <span>Coachs</span>
+                    </a>
+                    
+                    <a href="{{ route('calendar.index') }}" 
+                       class="flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 {{ request()->routeIs('calendar.*') ? 'bg-white text-indigo-600 shadow-lg' : 'hover:bg-indigo-700' }}">
+                        <i class="fas fa-calendar-alt w-5"></i>
+                        <span>Calendrier</span>
                     </a>
                 </div>
             </nav>
@@ -110,5 +117,7 @@
             <span>{{ session('error') }}</span>
         </div>
     @endif
+
+    @stack('scripts')
 </body>
 </html>
