@@ -22,5 +22,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gym.com',
             'password' => bcrypt('password'),
         ]);
+
+        $this->call([
+            PlanSeeder::class,
+            CoachSeeder::class,
+            ClientSeeder::class,
+        ]);
     }
 }
